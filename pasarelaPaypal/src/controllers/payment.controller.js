@@ -96,20 +96,20 @@ export const captureOrder = async (req, res) => {
            SECRET_KEY,
            { expiresIn: '1m' }
          );
-         return res.redirect(`http://numerologiachile/result?status=COMPLETED&token=${approvalToken}`);
+         return res.redirect(`https://numerologiachile.com/result?status=COMPLETED&token=${approvalToken}`);
        } else {
          const rejectToken = jwt.sign(
            { status: 'not_approved', timestamp: Date.now() },
            SECRET_KEY,
            { expiresIn: '1m' }
          );
-         return res.redirect(`http://numerologiachile/result?status=COMPLETED&token=${rejectToken}`);
+         return res.redirect(`https://numerologiachile.com/result?status=COMPLETED&token=${rejectToken}`);
        }
   } catch (error) {
     if (error.response) {
       console.error('Error de PayPal:', error.response.data);
       if(error.response.status === 422){
-        return res.redirect(`http://numerologiachile/result?status=NOT_COMPLETED`);//cambiar esta url por una cuando se tenga el front que va a manejar errores 
+        return res.redirect(`https://numerologiachile.com/result?status=NOT_COMPLETED`);//cambiar esta url por una cuando se tenga el front que va a manejar errores 
       }
       return res.status(error.response.status).json(error.response.data);
     } else {
