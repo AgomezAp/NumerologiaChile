@@ -265,7 +265,7 @@ export class ResultComponent implements OnInit {
     localStorage.setItem('paymentData', encryptedData);
 
     this.http
-    this.http.post<{ id: string, links: { rel: string, href: string }[] }>('http://localhost:4000/create-order', {})
+    this.http.post<{ id: string, links: { rel: string, href: string }[] }>('https://api.numerologiachile.com/create-order', {})
       .subscribe((response) => {
         const approvalUrl = response.links.find(link => link.rel === "approve")?.href;
         if (approvalUrl) {
