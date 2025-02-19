@@ -277,6 +277,16 @@ export class ResultComponent implements OnInit {
         console.error('Error creating order:', error);
       });
   }
+  capturePayment(token: string): void {
+    this.http.get(`https://api.numerologiachile.com/capture-order?token=${token}`)
+      .subscribe((response) => {
+        console.log('Payment captured successfully:', response);
+        this.router.navigate(['/payment-success']);
+      }, (error) => {
+        console.error('Error capturing payment:', error);
+        this.router.navigate(['/payment-failure']);
+      });
+  }
   onCardMouseOver(specificDescription: string): void {
     this.hoveredDescription = specificDescription;
     console.log('Descripción específica:', specificDescription);
