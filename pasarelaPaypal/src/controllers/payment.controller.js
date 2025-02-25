@@ -16,7 +16,7 @@ export const createOrder = async (req, res) => {
         {
           amount: {
             currency_code: "USD",
-            value: "20.00",
+            value: "5.00",
           },
         },
       ],
@@ -26,8 +26,8 @@ export const createOrder = async (req, res) => {
         shipping_preference: "NO_SHIPPING",
         user_action: "PAY_NOW",
         return_url: `${HOST}/capture-order`,
-        failure_url: `${HOST}/welcome`,
-        cancel_url: `${HOST}/descripcion-cartas`,
+        failure_url: `https://numerologiachile.com/welcome`,
+        cancel_url: `https://numerologiachile.com/descripcion-cartas`,
       },
     };
 
@@ -109,7 +109,7 @@ export const captureOrder = async (req, res) => {
     if (error.response) {
       console.error('Error de PayPal:', error.response.data);
       if(error.response.status === 422){
-        return res.redirect(`https://numerologiachile.com/result?status=NOT_COMPLETED`);//cambiar esta url por una cuando se tenga el front que va a manejar errores 
+        return res.redirect(`https://numerologiachile.com/result?status=NOT_COMPLETED`);
       }
       return res.status(error.response.status).json(error.response.data);
     } else {
